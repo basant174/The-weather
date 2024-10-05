@@ -1,4 +1,4 @@
-// https://api.unsplash.com/search/photos?page=1&query=${city}&client_id=maVgNo3IKVd7Pw7-_q4fywxtQCACntlNXKBBsFdrBzI&per_page=5&orientation=landscape
+
 
 let apiKey = "b9fcb4d2f8354d3cbd9110627241201"
 let cardsContainer= document.querySelector(".forecast-cards")
@@ -8,14 +8,11 @@ let allBars = document.querySelectorAll(".clock")
 
 let locationName = document.querySelector(".location .location")
 async function getWeather(country){
-    let response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${country}&days=3`)
+    let response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${country}&days=3`)
     let result = await response.json()
     console.log(result);
     displayWeather(result)
 }
-// getWeather("london")
-
-// console.log(date.toLocaleDateString("en-us", {weekday:"long"}));
 function displayWeather(result){
     console.log(result.forecast.forecastday);
     let forcast = result.forecast.forecastday
@@ -25,7 +22,7 @@ function displayWeather(result){
     for(let i=0 ; i< forcast.length; i++ ){
         let date = new Date(forcast[i].date)
         let weekDay = date.toLocaleDateString("en-us", {weekday:"long"})
-        // console.log(date.toLocaleDateString("en-us", {weekday:"long"}));
+       
        cartona+= `   
        <div class="card ${i==0? "active" : ""}" data-index=${i} >
         <div class="card-header">
@@ -99,18 +96,16 @@ function error(){
 }
 
 searchBox.addEventListener("keyup", function(e){
-    // console.log(searchBox.value);
-    // console.log(e);
+  
     if(e.key =="Enter")
     {
-        // console.log(searchBox.value);
         getWeather(searchBox.value)
 
     }
 })
 
 searchBox.addEventListener("blur", function(){
-    // console.log(searchBox.value);
+
     getWeather(searchBox.value)
 })
 
