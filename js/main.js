@@ -1,5 +1,4 @@
 
-
 let apiKey = "b9fcb4d2f8354d3cbd9110627241201"
 let cardsContainer= document.querySelector(".forecast-cards")
 let searchBox = document.querySelector("#searchBox")
@@ -137,6 +136,12 @@ cityData.innerHTML += item
 
 
 
+searchBox.addEventListener("keyup", function(e){
+  if(e.key == "Enter") {
+      getWeather(searchBox.value);  // Call the function with the search query
+      searchBox.value = "";         // Clear the input field automatically after pressing Enter
+  }
+});
 
 
 
